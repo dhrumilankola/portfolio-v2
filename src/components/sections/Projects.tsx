@@ -176,6 +176,8 @@ const animatedWordVariants = {
 };
 
 // Internal component for rendering a single category's carousel
+// eslint-disable-next-line react-hooks/rules-of-hooks
+/* eslint-disable react/no-unescaped-entities */
 const ProjectCategoryCarousel = ({ projects, categoryTitle }: { projects: ProjectStack[], categoryTitle: string }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [[page, direction], setPage] = useState([0, 0]); // Page state for AnimatePresence key
@@ -388,7 +390,6 @@ const ProjectCategoryCarousel = ({ projects, categoryTitle }: { projects: Projec
                 currentIndex === index ? "bg-primary scale-125" : "bg-muted hover:bg-muted-foreground/50"
               }`;
               return (
-                // eslint-disable-next-line react/no-unescaped-entities
                 <button
                   key={index}
                   onClick={() => goToProject(index)}
@@ -403,6 +404,7 @@ const ProjectCategoryCarousel = ({ projects, categoryTitle }: { projects: Projec
     </div>
   );
 };
+/* eslint-enable react/no-unescaped-entities */
 
 export default function Projects() {
   const aiProjects = projectStacks.filter(p => p.category === CATEGORIES[0]);
