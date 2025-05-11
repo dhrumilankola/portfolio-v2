@@ -3,7 +3,15 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import { BriefcaseIcon, CpuChipIcon, AcademicCapIcon, SparklesIcon, UserGroupIcon, MapPinIcon, RocketLaunchIcon, PuzzlePieceIcon, LightBulbIcon, ChevronDownIcon, DocumentTextIcon } from "@heroicons/react/24/outline"; // Example icons
+import {
+  CalendarDaysIcon,
+  AcademicCapIcon,
+  BriefcaseIcon,
+  LightBulbIcon,
+  ChevronDownIcon,
+  DocumentTextIcon,
+} from "@heroicons/react/24/solid";
+import { CpuChipIcon, SparklesIcon, UserGroupIcon } from "@heroicons/react/24/outline"; // Example icons
 
 interface TimelineEvent {
   id: string;

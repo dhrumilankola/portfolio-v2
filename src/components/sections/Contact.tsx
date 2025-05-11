@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import { FaEnvelope, FaPhone, FaMapMarkerAlt } from "react-icons/fa";
+import { FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -95,7 +95,7 @@ export default function Contact() {
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Get In Touch</h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Feel free to reach out to me for any questions or opportunities. I'm
+            Feel free to reach out to me for any questions or opportunities. I&apos;m
             always open to discussing new projects, creative ideas, or
             opportunities to be part of your vision.
           </p>
@@ -113,7 +113,7 @@ export default function Contact() {
             
             {submitSuccess && (
               <div className="mb-6 p-3 bg-green-500/10 text-green-500 rounded-md text-sm">
-                Thank you for your message! I'll get back to you soon.
+                Thank you for your message! I&apos;ll get back to you soon.
               </div>
             )}
             

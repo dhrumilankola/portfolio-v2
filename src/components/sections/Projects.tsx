@@ -21,7 +21,7 @@ interface ProjectStack {
   category: string;
 }
 
-const ALL_PROJECTS_CATEGORY = "All Projects";
+// const ALL_PROJECTS_CATEGORY = "All Projects"; // Removed as unused
 const CATEGORIES = ["AI & Full-Stack Applications", "Data Connectors & Tooling"];
 
 // Placeholder project data - REPLACE WITH YOUR ACTUAL PROJECTS
@@ -162,12 +162,6 @@ const carouselVariants = {
   enter: (direction: number) => ({ x: direction > 0 ? 1000 : -1000, opacity: 0 }),
   center: { zIndex: 1, x: 0, opacity: 1 },
   exit: (direction: number) => ({ zIndex: 0, x: direction < 0 ? 1000 : -1000, opacity: 0 }),
-};
-
-const descriptionContainerVariants = {
-  initial: { opacity: 0, height: "auto" },
-  animate: { opacity: 1, height: "auto", transition: { duration: 0.3, ease: "easeInOut" } },
-  exit: { opacity: 0, height: "auto", transition: { duration: 0.3, ease: "easeInOut" } },
 };
 
 const animatedTextContainerVariants = {
@@ -328,42 +322,30 @@ const ProjectCategoryCarousel = ({ projects, categoryTitle }: { projects: Projec
 
             {/* Interactive Description Area */}
             <motion.div layout className="mb-6 text-muted-foreground text-base md:text-lg leading-relaxed max-w-xl w-full">
-              {currentProject.longDescriptionParts && currentProject.longDescriptionParts.length > 0 ? (
-                <motion.div
-                  key={`${currentProject.id}-long-desc-parts`} // Unique key per project
-                  variants={animatedTextContainerVariants}
-                  initial="hidden"
-                  animate="visible"
-                  className="text-left md:text-center"
-                >
-                  {currentProject.longDescriptionParts.map((part, partIdx) => (
-                    part.text.split(/(\s+)/).map((segment, segmentIdx) => {
-                      if (segment.match(/^\s+$/)) {
-                        return <span key={`${partIdx}-${segmentIdx}`}>{segment}</span>;
-                      } else if (segment.length > 0) {
-                        return (
-                          <motion.span
-                            key={`${partIdx}-${segmentIdx}`}
-                            variants={animatedWordVariants}
-                            className={`inline-block ${part.highlight ? (part.className || 'text-primary font-semibold') : ''}`}
-                          >
-                            {segment}
-                          </motion.span>
-                        );
-                      }
-                      return null;
-                    })
-                  ))}
-                </motion.div>
-              ) : (
-                <motion.p
-                  key={`${currentProject.id}-one-liner`}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1, transition: { duration: 0.3 } }}
-                >
-                  {currentProject.description}
-                </motion.p>
-              )}
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                {currentProject.longDescriptionParts ? (
+                  <motion.span
+                    key={`${currentProject.id}-long-desc`}
+                    variants={animatedTextContainerVariants}
+                    initial="hidden"
+                    animate="visible"
+                    exit="hidden"
+                    className="block"
+                  >
+                    {currentProject.longDescriptionParts.map((part, idx) => (
+                      <motion.span
+                        key={idx}
+                        variants={animatedWordVariants}
+                        className={`inline ${part.highlight ? (part.className || 'font-semibold text-foreground') : ''}`}
+                      >
+                        {part.text}
+                      </motion.span>
+                    ))}
+                  </motion.span>
+                ) : (
+                  currentProject.description // Fallback if longDescriptionParts isn't available
+                )}
+              </p>
             </motion.div>
 
             {/* Links */}

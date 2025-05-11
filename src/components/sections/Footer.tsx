@@ -2,7 +2,7 @@
 
 import React from "react";
 import { Link as ScrollLink } from "react-scroll";
-import { FaGithub, FaLinkedin, FaTwitter, FaEnvelope } from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
 
 const navigation = {
   main: [

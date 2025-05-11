@@ -101,7 +101,7 @@ export default function Hero() {
             className="w-full md:w-3/5 flex flex-col gap-5 relative z-0" // Text takes more space, z-0
           >
             <h2 className="text-2xl md:text-3xl font-medium text-primary">
-              Hi, I'm Dhrumil Ankola
+              Hi, I&apos;m Dhrumil Ankola
             </h2>
             
             <div className="text-muted-foreground text-lg md:text-xl lg:text-2xl max-w-xl h-[180px] md:h-[200px] lg:h-[220px] flex items-center">
