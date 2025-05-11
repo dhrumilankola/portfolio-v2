@@ -388,6 +388,7 @@ const ProjectCategoryCarousel = ({ projects, categoryTitle }: { projects: Projec
                 currentIndex === index ? "bg-primary scale-125" : "bg-muted hover:bg-muted-foreground/50"
               }`;
               return (
+                // eslint-disable-next-line react/no-unescaped-entities
                 <button
                   key={index}
                   onClick={() => goToProject(index)}
