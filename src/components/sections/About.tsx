@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import {
-  CalendarDaysIcon,
+  // CalendarDaysIcon, // Removed as unused
   AcademicCapIcon,
   BriefcaseIcon,
   LightBulbIcon,
@@ -208,7 +208,7 @@ const RenderTimelineCard = ({ event, index, cardWidthClass, startExpanded }: { e
 export default function About() {
   const { ref, inView } = useInView({
     triggerOnce: true,
-    threshold: 0.1, // For the main section animation
+    threshold: 0.1, 
   });
 
   return (
@@ -216,7 +216,7 @@ export default function About() {
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: -20 }}
-          animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }} // Animate based on section inView
+          animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }} 
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >

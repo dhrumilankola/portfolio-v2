@@ -21,10 +21,8 @@ interface ProjectStack {
   category: string;
 }
 
-// const ALL_PROJECTS_CATEGORY = "All Projects"; // Removed as unused
 const CATEGORIES = ["AI & Full-Stack Applications", "Data Connectors & Tooling"];
 
-// Placeholder project data - REPLACE WITH YOUR ACTUAL PROJECTS
 const projectStacks: ProjectStack[] = [
   {
     id: "study-buddy-ai",
@@ -385,16 +383,19 @@ const ProjectCategoryCarousel = ({ projects, categoryTitle }: { projects: Projec
         {/* Dots for navigation (only if more than one project) */}
         {projects.length > 1 && (
           <div className="flex justify-center gap-2 mt-8">
-            {projects.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => goToProject(index)}
-                className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                  currentIndex === index ? "bg-primary scale-125" : "bg-muted hover:bg-muted-foreground/50"
-                }`}
-                aria-label={`Go to project ${index + 1} in ${categoryTitle}`}
-              />
-            ))}
+            {projects.map((_, index) => {
+              const dotClassName = `w-3 h-3 rounded-full transition-all duration-300 ${
+                currentIndex === index ? "bg-primary scale-125" : "bg-muted hover:bg-muted-foreground/50"
+              }`;
+              return (
+                <button
+                  key={index}
+                  onClick={() => goToProject(index)}
+                  className={dotClassName}
+                  aria-label={`Go to project ${index + 1} in ${categoryTitle}`}
+                />
+              );
+            })}
           </div>
         )}
       </div>
