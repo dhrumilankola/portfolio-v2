@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { Link as ScrollLink } from "react-scroll";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowDownIcon } from "@heroicons/react/24/outline";
+import Image from 'next/image';
 
 const animatedParagraphs = [
   {
@@ -174,10 +175,13 @@ export default function Hero() {
             <div className="relative w-80 h-80 md:w-96 md:h-96 lg:w-[420px] lg:h-[420px] xl:w-[480px] xl:h-[480px]">
               {/* Gradient aura behind the image, matching the new shape */}
               <div className="absolute inset-0 bg-gradient-to-br from-primary/40 to-blue-500/40 opacity-50 blur-xl animate-pulse-slow rounded-[60%_40%_30%_70%_/_70%_30%_70%_30%]" />
-              <img
+              <Image
                 src="/hero-image1.png"
                 alt="Dhrumil Ankola"
-                className="object-cover w-full h-full z-10 relative rounded-[60%_40%_30%_70%_/_70%_30%_70%_30%] shadow-2xl"
+                fill
+                sizes="(max-width: 768px) 80vw, (max-width: 1200px) 50vw, 33vw" // Optional: provide sizes for more accurate optimization
+                className="object-cover z-10 relative rounded-[60%_40%_30%_70%_/_70%_30%_70%_30%] shadow-2xl"
+                priority // Good to add for LCP images
               />
             </div>
           </motion.div>
