@@ -5,6 +5,7 @@ import { Link as ScrollLink } from "react-scroll";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowDownIcon } from "@heroicons/react/24/outline";
 import Image from 'next/image';
+import { trackEvent } from "@/components/Analytics";
 
 const animatedParagraphs = [
   {
@@ -158,6 +159,7 @@ export default function Hero() {
                 href="/Ankola_Dhrumil_Resume.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => trackEvent('click_resume', 'Engagement', 'Hero Section Resume Button')}
                 className="bg-secondary hover:bg-secondary/90 text-secondary-foreground px-6 py-3 rounded-lg font-medium transition-all"
               >
                 Resume
