@@ -56,7 +56,17 @@
   body {
     @apply text-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
+    background-color: blue !important;
+    min-height: 100vh !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: block !important;
   }
+}
+
+html {
+  background-color: lightgray !important;
+  min-height: 100vh !important;
 }
 
 /* Background grid patterns */

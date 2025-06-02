@@ -83,7 +83,7 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="relative min-h-screen flex items-center bg-background overflow-hidden"
+      className="relative min-h-screen flex items-center bg-background overflow-hidden pt-20 md:pt-24"
     >
       {/* Background shapes - simplified, focusing on image interaction */}
       <div className="absolute inset-0 z-0">

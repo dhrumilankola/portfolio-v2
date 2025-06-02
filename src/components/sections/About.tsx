@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import {
@@ -10,6 +10,7 @@ import {
   LightBulbIcon,
   ChevronDownIcon,
   DocumentTextIcon,
+  ArrowRightIcon,
 } from "@heroicons/react/24/solid";
 import { CpuChipIcon, SparklesIcon, UserGroupIcon } from "@heroicons/react/24/outline"; // Example icons
 
@@ -210,65 +211,97 @@ export default function About() {
     triggerOnce: true,
     threshold: 0.1, 
   });
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [showScrollCue, setShowScrollCue] = useState(true);
+
+  useEffect(() => {
+    if (!showScrollCue) return;
+    const timeout = setTimeout(() => setShowScrollCue(false), 5000);
+    const handleScroll = () => {
+      if (scrollRef.current && scrollRef.current.scrollLeft > 20) { 
+        setShowScrollCue(false);
+      }
+    };
+    const el = scrollRef.current;
+    el?.addEventListener('scroll', handleScroll);
+    return () => {
+      clearTimeout(timeout);
+      el?.removeEventListener('scroll', handleScroll);
+    };
+  }, [showScrollCue]);
 
   return (
-    <section id="about" className="py-20 bg-background text-foreground overflow-x-hidden" ref={ref}>
-      <div className="container mx-auto px-4">
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }} 
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-3xl md:text-4xl font-bold mb-3 flex items-center justify-center">
-          <DocumentTextIcon className="h-10 w-10 mr-3 text-primary" />
-          Logs from the Build
-          </h2>
-          <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
-            Every milestone, a mindset shift. Every project, a reflection of growth.
-          </p>
-        </motion.div>
+    <>
+      <section id="about" className="py-20 bg-background text-foreground overflow-x-hidden" ref={ref}>
+        <div className="container mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }} 
+            transition={{ duration: 0.6 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-3xl md:text-4xl font-bold mb-3 flex items-center justify-center">
+            <DocumentTextIcon className="h-10 w-10 mr-3 text-primary" />
+            Logs from the Build
+            </h2>
+            <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
+              Every milestone, a mindset shift. Every project, a reflection of growth.
+            </p>
+          </motion.div>
 
-        {/* Mobile: Horizontal Timeline */}
-        <div className="md:hidden">
-          <div className="flex overflow-x-auto space-x-6 pb-8 scrollbar-thin scrollbar-thumb-primary/70 scrollbar-track-transparent scrollbar-thumb-rounded-full">
-            {timelineEventsData.map((event, index) => (
-              <RenderTimelineCard key={event.id} event={event} index={index} cardWidthClass="w-80 flex-shrink-0" startExpanded={true} />
-            ))}
+          {/* Mobile: Horizontal Timeline */}
+          <div className="md:hidden relative">
+            {/* Scrollable cards - Added pr-12 for spacing, and z-10 */}
+            <div ref={scrollRef} className="flex overflow-x-auto space-x-6 pb-8 scrollbar-thin scrollbar-thumb-primary/70 scrollbar-track-transparent scrollbar-thumb-rounded-full pr-12 z-10">
+              {timelineEventsData.map((event, index) => (
+                <RenderTimelineCard key={event.id} event={event} index={index} cardWidthClass="w-80 flex-shrink-0" startExpanded={true} />
+              ))}
+            </div>
+            {/* Scroll cue arrow and gradient fade - Reverted to absolute positioning and original styles */}
+            {showScrollCue && (
+              <div className="pointer-events-none absolute top-1/2 right-4 -translate-y-1/2 z-30 flex flex-col items-center animate-bounce">
+                <div className="bg-background/80 rounded-full p-1 shadow-md">
+                  <ArrowRightIcon className="h-7 w-7 text-primary" />
+                </div>
+                <span className="text-xs text-primary mt-1">Scroll</span>
+              </div>
+            )}
+            {/* Adjusted gradient width and positioning, and z-index */}
+            <div className="pointer-events-none absolute top-0 right-0 h-full w-16 bg-gradient-to-l from-background to-transparent z-20" />
+          </div>
+
+          {/* Desktop: Zigzag Vertical Timeline */}
+          <div className="hidden md:block relative pt-8 pb-8"> {/* Added padding top/bottom for space */}
+            {/* Central Vertical Line */}
+            <div className="absolute top-0 bottom-0 left-1/2 w-0.5 bg-border -translate-x-1/2 z-0"></div>
+
+            {timelineEventsData.map((event, index) => {
+              const isLeft = index % 2 === 0;
+              return (
+                <div key={event.id} className="relative mb-12 flex items-center"> {/* Row container */}
+                  {isLeft ? (
+                    <>
+                      <div className="w-1/2 pr-10"> {/* Left card container */}
+                        <RenderTimelineCard event={event} index={index} cardWidthClass="w-full" startExpanded={false} />
+                      </div>
+                      <div className="w-1/2"></div> {/* Spacer */}
+                    </>
+                  ) : (
+                    <>
+                      <div className="w-1/2"></div> {/* Spacer */}
+                      <div className="w-1/2 pl-10"> {/* Right card container */}
+                        <RenderTimelineCard event={event} index={index} cardWidthClass="w-full" startExpanded={false} />
+                      </div>
+                    </>
+                  )}
+                  {/* Dot on the timeline - aligned with top of card for simplicity, can be adjusted */}
+                  <div className="absolute left-1/2 top-8 w-4 h-4 bg-primary rounded-full border-4 border-background -translate-x-1/2 z-10 shadow-md"></div>
+                </div>
+              );
+            })}
           </div>
         </div>
-
-        {/* Desktop: Zigzag Vertical Timeline */}
-        <div className="hidden md:block relative pt-8 pb-8"> {/* Added padding top/bottom for space */}
-          {/* Central Vertical Line */}
-          <div className="absolute top-0 bottom-0 left-1/2 w-0.5 bg-border -translate-x-1/2 z-0"></div>
-
-          {timelineEventsData.map((event, index) => {
-            const isLeft = index % 2 === 0;
-            return (
-              <div key={event.id} className="relative mb-12 flex items-center"> {/* Row container */}
-                {isLeft ? (
-                  <>
-                    <div className="w-1/2 pr-10"> {/* Left card container */}
-                      <RenderTimelineCard event={event} index={index} cardWidthClass="w-full" startExpanded={false} />
-                    </div>
-                    <div className="w-1/2"></div> {/* Spacer */}
-                  </>
-                ) : (
-                  <>
-                    <div className="w-1/2"></div> {/* Spacer */}
-                    <div className="w-1/2 pl-10"> {/* Right card container */}
-                      <RenderTimelineCard event={event} index={index} cardWidthClass="w-full" startExpanded={false} />
-                    </div>
-                  </>
-                )}
-                {/* Dot on the timeline - aligned with top of card for simplicity, can be adjusted */}
-                <div className="absolute left-1/2 top-8 w-4 h-4 bg-primary rounded-full border-4 border-background -translate-x-1/2 z-10 shadow-md"></div>
-              </div>
-            );
-          })}
-        </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 } 
