@@ -21,7 +21,7 @@ interface ProjectStack {
   category: string;
 }
 
-const CATEGORIES = ["AI & Full-Stack Applications", "Data Connectors & Tooling"];
+const CATEGORIES = ["AI & Full-Stack Applications", "Data Connectors & Tooling", "Web3 & Blockchain"];
 
 const projectStacks: ProjectStack[] = [
   {
@@ -153,6 +153,56 @@ const projectStacks: ProjectStack[] = [
     githubLink: "https://github.com/dhrumilankola/asterixdb-js-connector", 
     category: CATEGORIES[1],
   },
+  {
+    id: "soundwave-protocol",
+    stackName: "SoundWave Protocol: Decentralized Music IP & Collaboration Platform",
+    technologies: ["Solidity", "IPFS", "Story Protocol", "Web3", "ETHGlobal SF"],
+    description: "Empowering artists with transparent, programmable IP licensing for music using Story Protocol, Solidity, and IPFS.",
+    longDescriptionParts: [
+      { text: "Presented at " },
+      { text: "ETHGlobal San Francisco", highlight: true, className: "text-orange-400 font-semibold" },
+      { text: ", SoundWave Protocol was conceived to empower artists in the evolving digital landscape. This music-sharing and intellectual property platform leverages " },
+      { text: "Story Protocol", highlight: true, className: "text-sky-400 font-semibold" },
+      { text: " to enable " },
+      { text: "transparent and programmable IP licensing", highlight: true },
+      { text: " for musical works. The system was designed with " },
+      { text: "Solidity smart contracts", highlight: true, className: "text-green-400 font-semibold" },
+      { text: " for on-chain logic and utilized " },
+      { text: "IPFS for decentralized storage", highlight: true, className: "text-purple-400 font-semibold" },
+      { text: " of music assets. The goal was to demonstrate a practical application of " },
+      { text: "Web3 technologies", highlight: true },
+      { text: " to build more " },
+      { text: "equitable and collaborative models", highlight: true, className: "italic" },
+      { text: " for the creative industries, particularly music." }
+    ],
+    category: CATEGORIES[2],
+  },
+  {
+    id: "guardian-ai",
+    stackName: "GuardianAI: LLM-Powered Smart Contract Security Analyzer",
+    technologies: ["LLMs", "Solidity", "Python", "AI", "Blockchain"],
+    description: "Proactively identifies vulnerabilities and gas optimization issues in Solidity code using fine-tuned LLMs for enhanced smart contract security.",
+    longDescriptionParts: [
+      { text: "Driven by the critical need for robust security in the blockchain space, I developed GuardianAI, a smart contract analyzer that utilizes " },
+      { text: "Large Language Models (LLMs)", highlight: true, className: "text-primary font-bold" },
+      { text: ". This tool focuses on proactively identifying " },
+      { text: "common vulnerabilities and potential gas optimization issues", highlight: true, className: "text-orange-400 font-semibold" },
+      { text: " within " },
+      { text: "Solidity code", highlight: true },
+      { text: ". By " },
+      { text: "fine-tuning LLMs on smart contract datasets", highlight: true, className: "text-sky-400 font-semibold" },
+      { text: ", GuardianAI aims to provide developers with an " },
+      { text: "intelligent assistant for static analysis", highlight: true },
+      { text: ", offering insights to improve " },
+      { text: "code security and efficiency before deployment", highlight: true },
+      { text: ". This project explores the intersection of " },
+      { text: "AI and blockchain", highlight: true, className: "italic" },
+      { text: ", contributing to " },
+      { text: "safer and more reliable developer tooling", highlight: true },
+      { text: " in the Web3 ecosystem." }
+    ],
+    category: CATEGORIES[2],
+  }
 ];
 
 // Animation variants (can be defined once and reused)
@@ -406,6 +456,7 @@ const ProjectCategoryCarousel = ({ projects, categoryTitle }: { projects: Projec
 export default function Projects() {
   const aiProjects = projectStacks.filter(p => p.category === CATEGORIES[0]);
   const connectorProjects = projectStacks.filter(p => p.category === CATEGORIES[1]);
+  const web3Projects = projectStacks.filter(p => p.category === CATEGORIES[2]);
 
   return (
     <section id="projects" className="py-20 bg-background overflow-hidden">
@@ -424,6 +475,7 @@ export default function Projects() {
 
         <ProjectCategoryCarousel projects={aiProjects} categoryTitle={CATEGORIES[0]} />
         <ProjectCategoryCarousel projects={connectorProjects} categoryTitle={CATEGORIES[1]} />
+        <ProjectCategoryCarousel projects={web3Projects} categoryTitle={CATEGORIES[2]} />
         
       </div>
     </section>
