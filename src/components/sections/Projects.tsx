@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
-import Image from "next/image";
 
 // Updated data structure without 'image' property
 interface ProjectStack {

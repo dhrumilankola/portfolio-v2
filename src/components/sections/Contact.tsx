@@ -50,7 +50,7 @@ export default function Contact() {
       } else {
         setSubmitError(true);
       }
-    } catch (error) {
+    } catch {
       setSubmitError(true);
     } finally {
       setIsSubmitting(false);
@@ -68,7 +68,7 @@ export default function Contact() {
         >
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">Get In Touch</h2>
           <p className="text-muted-foreground max-w-3xl mx-auto text-base md:text-lg">
-            I'm always open to discussing new projects, creative ideas, or opportunities. 
+            I&apos;m always open to discussing new projects, creative ideas, or opportunities. 
             Feel free to reach out using the form or through my social channels.
           </p>
         </motion.div>
@@ -85,7 +85,7 @@ export default function Contact() {
             
             {submitSuccess && (
               <div className="mb-4 p-3 bg-green-500/10 text-green-400 border border-green-500/20 rounded-lg text-sm">
-                Message sent successfully! I'll get back to you soon.
+                Message sent successfully! I&apos;ll get back to you soon.
               </div>
             )}
             
