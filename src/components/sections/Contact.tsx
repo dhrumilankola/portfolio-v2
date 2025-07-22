@@ -140,7 +140,7 @@ export default function Contact() {
               <ul className="space-y-4 text-muted-foreground">
                 <li className="flex items-center gap-4">
                   <FaEnvelope className="text-primary" size={20} />
-                  <a href="mailto:dhrumil.ankola@gmail.com" className="hover:text-foreground transition-colors">dhrumil.ankola@gmail.com</a>
+                  <a href="mailto:ankoladhrumil@gmail.com" className="hover:text-foreground transition-colors">ankoladhrumil@gmail.com</a>
                 </li>
                 <li className="flex items-center gap-4">
                   <FaMapMarkerAlt className="text-primary" size={20} />
