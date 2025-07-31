@@ -76,6 +76,20 @@ const timelineEventsData: TimelineEvent[] = [
     quote: "Leadership isn\'t just planning — it\'s listening, adapting, and lifting others.",
   },
   {
+    id: "edicon",
+    yearPhase: "2022–2023",
+    titleIcon: "🏭",
+    title: "Product & Systems Engineer @ Edicon Paper",
+    details: [
+      { text: "Architected full-stack B2B client portal (React, Node.js, PostgreSQL)", icon: <BriefcaseIcon className="h-5 w-5 mr-2 text-primary" /> },
+      { text: "Engineered data pipeline (Python, Airflow, Spark) for real-time sensor analysis", icon: <CpuChipIcon className="h-5 w-5 mr-2 text-primary" /> },
+      { text: "Deployed QA monitoring system cutting material waste by 5%", icon: <LightBulbIcon className="h-5 w-5 mr-2 text-primary" /> }
+    ],
+    tech: ["React", "Node.js", "PostgreSQL", "Python", "Airflow", "Spark", "InfluxDB"],
+    quoteIcon: "🧠",
+    quote: "Industrial scale teaches you that every optimization matters when multiplied by thousands.",
+  },
+  {
     id: "ms-ucr",
     yearPhase: "2023–2025",
     titleIcon: "🏢",
