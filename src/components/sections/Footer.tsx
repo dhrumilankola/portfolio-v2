@@ -14,7 +14,7 @@ const navigation = {
   social: [
     { name: "GitHub", icon: FaGithub, href: "https://github.com/dhrumilankola" },
     { name: "LinkedIn", icon: FaLinkedin, href: "https://www.linkedin.com/in/dhrumil-ankola/" },
-    { name: "Email", icon: FaEnvelope, href: "mailto:ankoladhrumil@gmail.com" },
+    { name: "Email", icon: FaEnvelope, href: "mailto:ankoladhrumil.dev@gmail.com" },
   ],
 };
 
